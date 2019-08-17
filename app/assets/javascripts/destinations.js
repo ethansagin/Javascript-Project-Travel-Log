@@ -7,7 +7,7 @@ function getAttractions(id) {
     .then(destination => {
         document.getElementById("attractions").innerHTML += destination.attractions.map(att => {
             let a = new Attraction(att)
-            return a.renderAttractionLink(id)
+            return a.renderAttractionLink()
         }).join('')
         $("#attractions").append(`<ul>`)
         addListenersToLinks()
@@ -31,27 +31,38 @@ class Attraction {
         this.destination_id = obj.destination_id
     }
 
-    renderAttractionLink(destid) {
+    renderAttractionLink() {
         return `
-            <li><a href="#" data-id="${this.id}" data-destid="${this.destination_id}" id="attractions-links">${this.name}</a></li>
+            <li id="attractions-lis" data-id="${this.id}"><a href="#" data-id="${this.id}" data-destid="${this.destination_id}" id="attractions-links">${this.name}</a></li>
         `
     }
 
     renderAttraction() {
-        debugger
+        return `
+            <div>
+                <p>Type of attraction: ${this.kind_of_attraction}</p>
+                <p>Recommended: ${this.recommend ? "Check it out!" : "Not worth it"}</p>
+                <p>Comments: ${this.comments}</p>
+                <p>Website: ${this.url}</p>
+            </div>
+        `
     }
 }
 
 
 
-function displayAttraction() {
+function displayAttraction(e) {
+    e.preventDefault()
     fetch(BASEURL + `/destinations/${this.dataset.destid}/attractions/${this.dataset.id}`)
-    .then(resp => console.log(resp))
-    // .then(resp => resp.json())
-    // .then(att => {
-    //     let a = new Attraction(att)
-    //     return a.renderAttraction()
-    // })
+    .then(resp => resp.json())
+    .then(att => {
+        let a = new Attraction(att)
+        document.querySelectorAll("#attractions-lis").forEach(function(li) {
+            if(parseInt(li.dataset.id) === a.id) {
+                li.innerHTML += a.renderAttraction()
+            } 
+        })
+    })
 }
 
 

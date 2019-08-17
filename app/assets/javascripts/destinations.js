@@ -7,7 +7,7 @@ function getAttractions(id) {
     .then(destination => {
         document.getElementById("attractions").innerHTML += destination.attractions.map(att => {
             let a = new Attraction(att)
-            return a.renderAttractionLink()
+            return a.renderAttractionLink(id)
         }).join('')
         $("#attractions").append(`<ul>`)
         addListenersToLinks()
@@ -29,17 +29,27 @@ class Attraction {
         this.recommend = obj.recommend
         this.comments = obj.comments
     }
-    renderAttractionLink() {
+
+    renderAttractionLink(destid) {
         return `
-            <li><a href="#" data-id="${this.id}" id="attractions-links">${this.name}</a></li>
+            <li><a href="#" data-id="${this.id}" data-destid="${destid}" id="attractions-links">${this.name}</a></li>
         `
+    }
+
+    renderAttraction() {
+        debugger
     }
 }
 
 
 
 function displayAttraction() {
-    this.dataset.id
+    fetch(BASEURL + `/destinations/${this.dataset.destid}/attractions/${this.dataset.id}`)
+    .then(resp => resp.json())
+    .then(att => {
+        let a = new Attraction(att)
+        return a.renderAttraction()
+    })
 }
 
 

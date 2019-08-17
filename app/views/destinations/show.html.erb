@@ -23,25 +23,6 @@
     <%= link_to "Delete Destination", destination_path(@destination), :method => :delete %> <br>
 </div> <br>
 
-
-<div>
-    <h3>Attractions of <%= @destination.name %></h3>
-
-    <% if !@destination.attractions.recommended.empty? %>
-        <h4>Recommended</h4>
-
-        <% @destination.attractions.recommended.each do |attraction| %>
-            <%= link_to attraction.name, destination_attraction_path(@destination, attraction) %> <br>
-        <% end %>
-    <% end %>
-
-    <% if !@destination.attractions.not_recommended.empty? %>
-        <h4>Not recommended</h4>
-
-        <% @destination.attractions.not_recommended.each do |attraction| %>
-            <%= link_to attraction.name, destination_attraction_path(@destination, attraction) %> <br>
-        <% end %>
-    <% end %> <br>
-
-    <%= link_to 'Add Attraction', new_destination_attraction_path(@destination) %>
+<div id='attractions'>
+    <button onclick="getAttractions(<%=@destination.id%>)">See Attractions</button>
 </div>

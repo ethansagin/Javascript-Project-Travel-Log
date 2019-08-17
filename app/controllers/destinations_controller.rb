@@ -26,7 +26,11 @@ class DestinationsController < ApplicationController
     end
 
     def show
-        set_destination
+        @destination = @user.destinations.find_by(id: params[:id])
+        respond_to do |format|
+            format.html
+            format.json{render json: @destination}
+        end
     end
 
     def edit

@@ -15,7 +15,10 @@ class AttractionsController < ApplicationController
     end
 
     def show
-        set_attraction
+        binding.pry
+        @attraction = @destination.attractions.find_by(id: params[:id])
+        render json: @attraction
+        end
     end
 
     def edit
@@ -53,7 +56,8 @@ class AttractionsController < ApplicationController
             :url,
             :kind_of_attraction,
             :recommend,
-            :comments
+            :comments,
+            :destination_id
         )
     end
 end

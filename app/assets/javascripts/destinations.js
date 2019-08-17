@@ -28,11 +28,12 @@ class Attraction {
         this.kind_of_attraction = obj.kind_of_attraction
         this.recommend = obj.recommend
         this.comments = obj.comments
+        this.destination_id = obj.destination_id
     }
 
     renderAttractionLink(destid) {
         return `
-            <li><a href="#" data-id="${this.id}" data-destid="${destid}" id="attractions-links">${this.name}</a></li>
+            <li><a href="#" data-id="${this.id}" data-destid="${this.destination_id}" id="attractions-links">${this.name}</a></li>
         `
     }
 
@@ -45,11 +46,12 @@ class Attraction {
 
 function displayAttraction() {
     fetch(BASEURL + `/destinations/${this.dataset.destid}/attractions/${this.dataset.id}`)
-    .then(resp => resp.json())
-    .then(att => {
-        let a = new Attraction(att)
-        return a.renderAttraction()
-    })
+    .then(resp => console.log(resp))
+    // .then(resp => resp.json())
+    // .then(att => {
+    //     let a = new Attraction(att)
+    //     return a.renderAttraction()
+    // })
 }
 
 

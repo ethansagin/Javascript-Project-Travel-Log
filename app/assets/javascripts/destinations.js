@@ -7,7 +7,7 @@ function getAttractions(id) {
     .then(destination => {
         document.getElementById("attractions").innerHTML += destination.attractions.map(att => {
             let a = new Attraction(att)
-            return a.render()
+            return a.renderAttractionLink()
         }).join('')
         $("#attractions").append(`<ul>`)
         addListenersToLinks()
@@ -29,7 +29,7 @@ class Attraction {
         this.recommend = obj.recommend
         this.comments = obj.comments
     }
-    render() {
+    renderAttractionLink() {
         return `
             <li><a href="#" data-id="${this.id}" id="attractions-links">${this.name}</a></li>
         `
@@ -39,5 +39,14 @@ class Attraction {
 
 
 function displayAttraction() {
+    this.dataset.id
+}
 
+
+function displayAttractionForm() {
+    // hijack form, submit to createAttraction()
+}
+
+function createAttraction() {
+    // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

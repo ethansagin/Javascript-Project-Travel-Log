@@ -66,9 +66,9 @@ function displayAttraction(e) {
 }
 
 
-function displayAttractionForm() {
+function displayAttractionForm(id) {
     document.querySelector("#attraction-form").innerHTML = `
-        <form onsubmit="createAttraction(); return false;">
+        <form onsubmit="createAttraction(${id}); return false;">
             <label>Name: </label>
             <input type="text" id="name"> <br>
             <label>Kind of Attraction: </label>
@@ -93,5 +93,6 @@ function createAttraction() {
         comments: document.getElementById("comments").value,
         url: document.getElementById("url").value
     }
+    fetch()
     // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

@@ -40,8 +40,8 @@ class Attraction {
     renderAttraction() {
         return `
             <div>
-                <p>Type of attraction: ${this.kind_of_attraction}</p>
-                <p>Recommended: ${this.recommend ? "Check it out!" : "Not worth it"}</p>
+                <p>Kind of attraction: ${this.kind_of_attraction}</p>
+                <p>Recommended?: ${this.recommend ? "Check it out!" : "Not worth it"}</p>
                 <p>Comments: ${this.comments}</p>
                 <p>Website: ${this.url}</p>
             </div>
@@ -67,7 +67,21 @@ function displayAttraction(e) {
 
 
 function displayAttractionForm() {
-    // hijack form, submit to createAttraction()
+    document.querySelector("#attraction-form").innerHTML = `
+        <form onsubmit="createAttraction(); return false;">
+            <label>Name: </label>
+            <input type="text" id="name"> <br>
+            <label>Kind of Attraction: </label>
+            <input type="text" id="kind_of_attraction"> <br>
+            <label>Recommend?: </label>
+            <input type="checkbox" id="recommend"> <br>
+            <label>Comments: </label>
+            <input type="textarea" id="comments"> <br>
+            <label>URL: <label>
+            <input type="text" id="url"> <br>
+            <input type="submit" value="Create Attraction">
+        </form>
+    `
 }
 
 function createAttraction() {

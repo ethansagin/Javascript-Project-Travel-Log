@@ -1,11 +1,13 @@
 class AttractionsController < ApplicationController
     before_action :authenticate_user!, :set_destination
+    skip_before_action :verify_authenticity_token
 
     def new
         @attraction = @destination.attractions.build
     end
 
     def create
+        binding.pry
         attraction = @destination.attractions.build(attraction_params)
         if attraction.save
             render json: attraction

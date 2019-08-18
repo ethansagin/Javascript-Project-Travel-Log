@@ -6,11 +6,11 @@ class AttractionsController < ApplicationController
     end
 
     def create
-        @attraction = @destination.attractions.build(attraction_params)
-        if @attraction.save
-            redirect_to destination_path(@destination)
+        attraction = @destination.attractions.build(attraction_params)
+        if attraction.save
+            render json: attraction
         else
-            render :new
+            render json: {errors: attraction.errors.full_messages}
         end
     end
 

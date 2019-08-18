@@ -84,8 +84,7 @@ function displayAttractionForm(id) {
     `
 }
 
-function createAttraction() {
-    debugger
+function createAttraction(id) {
     attraction = {
         name: document.getElementById("name").value,
         kind_of_attraction: document.getElementById("kind_of_attraction").value,
@@ -93,6 +92,15 @@ function createAttraction() {
         comments: document.getElementById("comments").value,
         url: document.getElementById("url").value
     }
-    fetch()
+    fetch(BASEURL + `/destinations/${id}/attractions`, {
+        method: "POST",
+        body: JSON.stringify(attraction)
+    })
+    .then(resp => resp.json())
+    .then(att => {
+        let a = new Attraction(att)
+        document.querySelector("#attractions").innerHTML += a.renderAttractionLink()
+        document.querySelector("#attraction-form").innerHTML = ""
+    })
     // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

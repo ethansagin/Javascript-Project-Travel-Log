@@ -85,5 +85,13 @@ function displayAttractionForm() {
 }
 
 function createAttraction() {
+    debugger
+    attraction = {
+        name: document.getElementById("name").value,
+        kind_of_attraction: document.getElementById("kind_of_attraction").value,
+        recommend: document.getElementById("recommend").checked,
+        comments: document.getElementById("comments").value,
+        url: document.getElementById("url").value
+    }
     // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

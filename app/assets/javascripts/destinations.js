@@ -49,8 +49,6 @@ class Attraction {
     }
 }
 
-
-
 function displayAttraction(e) {
     e.preventDefault()
     fetch(BASEURL + `/destinations/${this.dataset.destid}/attractions/${this.dataset.id}`)
@@ -64,7 +62,6 @@ function displayAttraction(e) {
         })
     })
 }
-
 
 function displayAttractionForm(id) {
     document.querySelector("#attraction-form").innerHTML = `
@@ -92,7 +89,7 @@ function createAttraction(id) {
         comments: document.getElementById("comments").value,
         url: document.getElementById("url").value
     }
-    fetch(BASEURL + `/destinations/${id}/attractions`,{
+    fetch(BASEURL + `/destinations/${id}/attractions`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -105,7 +102,8 @@ function createAttraction(id) {
         let a = new Attraction(att)
         document.querySelector("#attraction-form").innerHTML = `
             <p>${a.name} has been added to this destination's list of attractions!</p> <br>
-            <button onclick='displayAttractionForm(${a.destination_id})'>Add Attraction</button>`
+            <button onclick='displayAttractionForm(${a.destination_id})'>Add Attraction</button>
+        `
+        getAttractions(a.destination_id)
         })
-    // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

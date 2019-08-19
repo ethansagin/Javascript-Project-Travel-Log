@@ -100,11 +100,12 @@ function createAttraction(id) {
         },
         body: JSON.stringify(attraction)
     })
-    .then(att => console.log(att))
-    // .then(att => {
-    //     let a = new Attraction(att)
-    //     document.querySelector("#attractions").innerHTML += a.renderAttractionLink()
-    //     document.querySelector("#attraction-form").innerHTML = ""
-    // })
+    .then(resp => resp.json())
+    .then(att => {
+        let a = new Attraction(att)
+        document.querySelector("#attraction-form").innerHTML = `
+            <p>${a.name} has been added to this destination's list of attractions!</p> <br>
+            <button onclick='displayAttractionForm(${a.destination_id})'>Add Attraction</button>`
+        })
     // make construct from form inputs, stringify and post w/ fetch, adds to index list
 }

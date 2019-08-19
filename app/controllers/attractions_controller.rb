@@ -7,7 +7,6 @@ class AttractionsController < ApplicationController
     end
 
     def create
-        binding.pry
         attraction = @destination.attractions.build(attraction_params)
         if attraction.save
             render json: attraction

@@ -1,16 +1,22 @@
-Welcome to TRAVEL LOG (other title suggestions are welcome), my third portfolio project for the Flatiron School Online Web Dev Program! This project is meant to demonstrate what I have learned about working with Ruby on Rails by creating an application which manages related data through complex forms and RESTful routes
+Welcome to JAVASCRIPT TRAVEL LOG (other title suggestions are welcome), an extension of my third portfolio project for the Flatiron School Online Web Dev Program! This project builds upon the foundation of the Rails Travel Log by using Javascript in order to incorporate dynamically rendered page elements to the front-end of the original application.
 
 The app is a virtual travel log through which you can keep track of cities you have visited, which attractions you did or did not enjoy on your visit, mark recommendations for repeat visits or friends who may travel there, and maintain a list of future destinations. To use, simply navigate to the signup page to create an account and follow the linked prompts once you've signed in.
 
 INSTALLATION
 
-In your terminal enter "git clone git@github.com:ethansagin/Rails-Project-Travel-Log.git"
-Cd into the directory and "bundle install"
-Enter "rails s"  to spool up the server and paste the redirect link into a new browser window to begin.
+1) Clone this Github repository by entering the following command in your terminal: "git clone git@github.com:ethansagin/Javascript-Project-Travel-Log.git"
+
+2) Change directories to the cloned directory: "cd Javascript-Project-Travel-Log"
+
+3) Install the required gems: "bundle install"
+
+4) Spool up the server in your web browser: "rails s" 
+
+5) Paste the redirect link from the terminal into a new browser window to navigate to localhost:3000 and begin using the app.
 
 CONTRIBUTING
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ethansagin/Rails-Project-Travel-Log.git. Contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ethansagin/Javascript-Rails-Project-Travel-Log.git. Contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 LICENSE
 

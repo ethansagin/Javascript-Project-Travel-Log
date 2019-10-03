@@ -14,6 +14,31 @@ function getAttractions(id) {
     })
 }
 
+function getAttractionsAlpha(id) {
+    $("#attractions").html(`<ul>`)
+    fetch(BASEURL + `/destinations/${id}.json`)
+    .then(resp => resp.json())
+    .then(destination => {
+        let sortedAtt = destination.attractions.sort(function(a, b) {
+            var nameA = a.name.toUpperCase();
+            var nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+              } else if (nameA > nameB) {
+                return 1;
+              } else {
+                return 0;
+              }
+        })
+        document.getElementById("attractions").innerHTML += sortedAtt.map(att => {
+            let a = new Attraction(att)
+            return a.renderAttractionLink()
+        }).join('')
+        $("#attractions").append(`<ul>`)
+        addListenersToLinks()
+    })
+}
+
 function addListenersToLinks() {
     document.querySelectorAll("#attractions-links").forEach(function(link) {
         link.addEventListener("click", displayAttraction)

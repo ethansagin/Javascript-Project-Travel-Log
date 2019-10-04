@@ -1,5 +1,5 @@
-<div>
-    <h2>Destination: <%= @destination.name %>, <%= @destination.country.name %></h2> <br>
+<div id="destination-box">
+    <h2>Destination: <%= @destination.name %>, <%= @destination.country.name %></h2>
 
     <% if @destination.visited? %> 
         <strong> Year of last visit <%= @destination.year_of_visit %> </strong> <br>
@@ -18,16 +18,19 @@
     <% end %><br>
     
     Notes: <%=  @destination.notes%> <br>
+    <br>
 
     <%= link_to "Edit Destination", edit_destination_path(@destination) %> <br>
     <%= link_to "Delete Destination", destination_path(@destination), :method => :delete %> <br>
 </div> <br>
 
-<div id='attractions'>
-    <button onclick="getAttractions(<%=@destination.id%>)">See All Attractions</button>
-    <button onclick="getAttractionsAlpha(<%=@destination.id%>)">See All Attractions Alphabetically</button>
-</div> <br>
+<div id='attraction-box'>
+    <h3 style="text-decoration: underline">Attractions in <%=@destination.name%></h3>
+    <div id='attractions'>
+        <button onclick="getAttractions(<%=@destination.id%>)">See All Attractions</button>
+    </div> <br>
 
-<div id='attraction-form'>
-    <button onclick="displayAttractionForm(<%=@destination.id%>)">Add Attraction</button>
+    <div id='attraction-form'>
+        <button onclick="displayAttractionForm(<%=@destination.id%>)">Add Attraction</button>
+    </div>
 </div>

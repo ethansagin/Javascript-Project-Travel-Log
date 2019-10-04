@@ -8,23 +8,25 @@
 <% end %> <br>
 
 <% if !@destinations.visited.empty? %>
-    <div>
+    <div id="destinations_visited">
         <h3>Places I Have Visited</h3>
 
         <% @destinations.visited.each do |d| %>
-            <%= link_to d.name, destination_path(d) %>, <%= d.country.name %> <br>
+            <%= link_to d.name, destination_path(d) %> - <%= d.country.name %> <br>
         <% end %> <br>
-    <div>
+    </div>
 <% end %>
 
 <% if !@destinations.not_visited.empty? %>
-    <div>
+    <div id="destinations_not_visited">
         <h3>Places I Want To Visit</h3>
 
         <% @destinations.not_visited.each do |d| %>
-            <%= link_to d.name, destination_path(d) %>, <%= d.country.name %> <br>
+            <%= link_to d.name, destination_path(d) %> - <%= d.country.name %> <br>
         <% end %> <br>
-    <div>
+    </div>
 <% end %>
 
-<%= link_to 'Add Destination', new_destination_path %> <br>
+<div id="add_destination_button">
+    <%= link_to 'Add Destination', new_destination_path %> <br>
+</div>

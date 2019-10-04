@@ -17,18 +17,22 @@
     <%= f.label :name %>
     <%= f.text_field :name %> <br>
 
-    Select Country<%= f.collection_select :country_id, Country.all, :id, :name, include_blank: true %> <br>
+    <span>
+      Select Country<%= f.collection_select :country_id, Country.all, :id, :name, include_blank: true %>
 
-    <%= f.fields_for :country, destination.country do |c| %>
-      <%= c.label :name, 'OR Add a New Country' %>
-      <%= c.text_field :name %> <br>
-    <% end %>
+      <%= f.fields_for :country, destination.country do |c| %>
+        <%= c.label :name, 'OR Add a New Country' %>
+        <%= c.text_field :name %> <br>
+      <% end %>
+    </span>
         
-    <%= f.label :visited, 'Visited?' %>
-    <%= f.check_box :visited? %> <br>
+    <span>
+      <%= f.label :visited, 'Visited?' %>
+      <%= f.check_box :visited? %>
 
-    <%= f.label :year_of_visit %>
-    <%= f.number_field :year_of_visit %> <br>
+      <%= f.label :year_of_visit %>
+      <%= f.number_field :year_of_visit %> <br>
+    </span>
 
     <%= f.label :recommend, 'Would you recommend this destination to others?' %>
     <%= f.check_box :recommend? %> <br>

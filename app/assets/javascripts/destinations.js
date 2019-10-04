@@ -14,33 +14,8 @@ function getAttractions(id) {
     })
 }
 
-function getAttractionsAlpha(id) {
-    $("#attractions").html(`<ul>`)
-    fetch(BASEURL + `/destinations/${id}.json`)
-    .then(resp => resp.json())
-    .then(destination => {
-        let sortedAtt = destination.attractions.sort(function(a, b) {
-            var nameA = a.name.toUpperCase();
-            var nameB = b.name.toUpperCase();
-            if (nameA < nameB) {
-                return -1;
-              } else if (nameA > nameB) {
-                return 1;
-              } else {
-                return 0;
-              }
-        })
-        document.getElementById("attractions").innerHTML += sortedAtt.map(att => {
-            let a = new Attraction(att)
-            return a.renderAttractionLink()
-        }).join('')
-        $("#attractions").append(`<ul>`)
-        addListenersToLinks()
-    })
-}
-
 function addListenersToLinks() {
-    document.querySelectorAll("#attractions-links").forEach(function(link) {
+    document.querySelectorAll(".attractions-links").forEach(function(link) {
         link.addEventListener("click", displayAttraction)
     }) 
 }
@@ -58,17 +33,21 @@ class Attraction {
 
     renderAttractionLink() {
         return `
-            <li id="attractions-lis" data-id="${this.id}"><a href="#" data-id="${this.id}" data-destid="${this.destination_id}" id="attractions-links">${this.name}</a></li>
+            <li class="attractions-lis" data-id="${this.id}">
+                <a href="#" data-id="${this.id}" data-destid="${this.destination_id}" class="attractions-links">${this.name}</a>
+            </li>
         `
     }
 
     renderAttraction() {
         return `
-            <div>
-                <p>Kind of attraction: ${this.kind_of_attraction}</p>
-                <p>Recommended?: ${this.recommend ? "Check it out!" : "Not worth it"}</p>
-                <p>Comments: ${this.comments}</p>
-                <p>Website: ${this.url}</p>
+            <div class="attraction">
+                <p>
+                    Kind of attraction: ${this.kind_of_attraction}<br>
+                    Recommend to friends?: ${this.recommend ? "Check it out!" : "Not worth it"}<br>
+                    Comments: ${this.comments}<br>
+                    Website: ${this.url}<br>
+                </p>
             </div>
         `
     }
@@ -80,7 +59,7 @@ function displayAttraction(e) {
     .then(resp => resp.json())
     .then(att => {
         let a = new Attraction(att)
-        document.querySelectorAll("#attractions-lis").forEach(function(li) {
+        document.querySelectorAll(".attractions-lis").forEach(function(li) {
             if(parseInt(li.dataset.id) === a.id) {
                 li.innerHTML += a.renderAttraction()
             } 
@@ -130,5 +109,5 @@ function createAttraction(id) {
             <button onclick='displayAttractionForm(${a.destination_id})'>Add Attraction</button>
         `
         getAttractions(a.destination_id)
-        })
+    })
 }

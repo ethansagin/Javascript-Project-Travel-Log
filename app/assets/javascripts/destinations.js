@@ -5,12 +5,16 @@ function getAttractions(id) {
     fetch(BASEURL + `/destinations/${id}.json`)
     .then(resp => resp.json())
     .then(destination => {
-        document.getElementById("attractions").innerHTML += destination.attractions.map(att => {
-            let a = new Attraction(att)
-            return a.renderAttractionLink()
-        }).join('')
-        $("#attractions").append(`<ul>`)
-        addListenersToLinks()
+        if(destination.attractions.length > 0) {
+            document.getElementById("attractions").innerHTML += destination.attractions.map(att => {
+                let a = new Attraction(att)
+                return a.renderAttractionLink()
+            }).join('')
+            $("#attractions").append(`<ul>`)
+            addListenersToLinks()
+        } else {
+            document.getElementById("attractions").innerHTML += "<p>You have no attractions listed for this destination!</p>"
+        }
     })
 }
 

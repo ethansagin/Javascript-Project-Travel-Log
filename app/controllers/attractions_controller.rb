@@ -4,6 +4,7 @@ class AttractionsController < ApplicationController
 
     def new
         @attraction = @destination.attractions.build
+        binding.pry
     end
 
     def create
